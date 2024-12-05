@@ -1,18 +1,22 @@
 import React, { useRef } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import Logo from "@/public/AdonGroup.png";
 import Globe from "@/public/globe.svg";
 import Phone from "@/public/phone-call.svg";
-import AOW from "@/public/AOW.png";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { Copy } from "lucide-react";
 
 interface SignaturePreviewProps {
   name: string;
   position: string;
+  contact: string;
 }
 
-const SignaturePreview = ({ name, position }: SignaturePreviewProps) => {
+const SignaturePreview = ({
+  name,
+  position,
+  contact,
+}: SignaturePreviewProps) => {
   // Create a ref to the signature container
   const signatureRef = useRef<HTMLDivElement | null>(null);
 
@@ -41,7 +45,14 @@ const SignaturePreview = ({ name, position }: SignaturePreviewProps) => {
         >
           <div className="flex flex-col items-start gap-3 py-2">
             <div className="flex gap-3 items-center">
-              <Image src={Logo} alt="Logo" className="w-[200px] ml-3" />
+              <Image
+                src="https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png"
+                alt="Logo"
+                width={190}
+                height={120}
+                priority
+                className="h-auto ml-3"
+              />
               <div className="flex flex-col gap-5">
                 <div>
                   <b className="text-white text-lg">{name.toUpperCase()}</b>
@@ -50,7 +61,7 @@ const SignaturePreview = ({ name, position }: SignaturePreviewProps) => {
 
                 <div className="flex flex-col gap-1">
                   <a
-                    href="tel:0401736730"
+                    href={`tel:` + `${contact}`}
                     className="text-white flex items-center gap-2 text-xs"
                   >
                     <Image
@@ -58,7 +69,7 @@ const SignaturePreview = ({ name, position }: SignaturePreviewProps) => {
                       alt="Phone icon"
                       className="text-white w-4"
                     />
-                    0401 736 730
+                    {contact}
                   </a>
                   <a
                     href="https://www.adongroup.com.au"
@@ -84,8 +95,23 @@ const SignaturePreview = ({ name, position }: SignaturePreviewProps) => {
                   </a>
                 </div>
               </div>
-              <div className="ml-auto">
-                <Image src={AOW} alt="AOW logo" className="w-[200px] ml-auto" />
+              <div className="flex flex-col items-center gap-4 ml-8">
+                <Image
+                  src="https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png"
+                  alt="AOW logo"
+                  width={200}
+                  height={80}
+                  className="h-auto"
+                  priority
+                />
+                <Image
+                  src="https://adongroup.com.au/wp-content/uploads/2024/12/AOH-logo.png"
+                  alt="AOH logo"
+                  width={120}
+                  height={80}
+                  className="h-auto"
+                  priority
+                />
               </div>
             </div>
             <p className="text-white text-[9px] px-4">
@@ -99,13 +125,24 @@ const SignaturePreview = ({ name, position }: SignaturePreviewProps) => {
             </p>
           </div>
         </div>
-        <Button
-          variant={"outline"}
-          className="mt-4"
-          onClick={handleCopy} // Use the ref-based handler
-        >
-          Copy signature
-        </Button>
+        <div className="flex items-center gap-3">
+          <Button
+            variant={"default"}
+            size={"sm"}
+            className="mt-4"
+            onClick={handleCopy} // Use the ref-based handler
+          >
+            <Copy /> Copy signature
+          </Button>
+          <Button
+            variant={"outline"}
+            size={"sm"}
+            className="mt-4"
+            onClick={handleCopy} // Use the ref-based handler
+          >
+            <Copy /> Copy signature for Monday
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );

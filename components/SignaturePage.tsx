@@ -4,10 +4,14 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Input } from "./ui/input";
 import SignaturePreview from "./SignaturePreview";
+import { Info } from "lucide-react";
+import HoverInfo from "./HoverInfo";
+import SignatureDialog from "./SignatureDialog";
 
 const SignaturePage = () => {
   const [signatureName, setSignatureName] = useState("Your name");
   const [signaturePosition, setSignaturePosition] = useState("Your position");
+  const [signatureContact, setSignatureContact] = useState("0401 736 730");
   return (
     <>
       <div className="flex flex-col items-start gap-3 px-28 py-12">
@@ -38,7 +42,27 @@ const SignaturePage = () => {
                       onChange={(e) => setSignaturePosition(e.target.value)}
                     />
                   </div>
+                  <div>
+                    <label htmlFor="contact" className="flex gap-2">
+                      {/* Contact <Info className="w-4 text-slate-400" /> */}
+                      <HoverInfo
+                        title="Contact"
+                        icon={<Info className="w-4 text-slate-400" />}
+                        description="Note for PH employee: Please do not edit this number."
+                      />
+                    </label>
+                    <Input
+                      name="contact"
+                      placeholder={signatureContact}
+                      onChange={(e) => setSignatureContact(e.target.value)}
+                    />
+                  </div>
                 </div>
+                <SignatureDialog
+                  name={signatureName}
+                  position={signaturePosition}
+                  contact={signatureContact}
+                />
               </CardContent>
             </Card>
           </div>
@@ -46,6 +70,7 @@ const SignaturePage = () => {
             <SignaturePreview
               name={signatureName}
               position={signaturePosition}
+              contact={signatureContact}
             />
           </div>
         </div>
