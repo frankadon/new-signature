@@ -30,8 +30,15 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
 
   const handleCopyHTML = () => {
     if (signatureRef.current) {
+      const clonedNode = signatureRef.current.cloneNode(true) as HTMLElement;
+      const images = clonedNode.querySelectorAll("img");
+      images.forEach((img) => {
+        if (img.src.startsWith("/")) {
+          img.src = `${window.location.origin}${img.src}`;
+        }
+      });
       navigator.clipboard
-        .writeText(signatureRef.current.outerHTML) // Copy the HTML code of the signature
+        .writeText(clonedNode.outerHTML)
         .then(() => console.log("HTML code copied successfully!"))
         .catch((error) => console.error(error));
     } else {
@@ -204,14 +211,26 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
               </span>
             </div>
           </div>
-          <div className="mt-4">
+          <div className="flex flex-row items-center gap-4 mt-4">
             <Button
-              variant={"default"}
+              variant={"outline"}
               size={"sm"}
-              onClick={() => setShowHTML(!showHTML)} // Toggle HTML visibility
+              onClick={() => setShowHTML(!showHTML)}
             >
               {showHTML ? "Hide HTML Code" : "Show HTML Code"}
             </Button>
+            {showHTML ? (
+              <Button
+                variant={"default"}
+                size={"sm"}
+                onClick={handleCopyHTML}
+                className="ml-auto"
+              >
+                <Copy /> Copy Signature HTML
+              </Button>
+            ) : (
+              ""
+            )}
           </div>
           {showHTML && signatureRef.current && (
             <pre
@@ -221,14 +240,6 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
               {signatureRef.current.outerHTML}
             </pre>
           )}
-          <Button
-            variant={"default"}
-            size={"sm"}
-            className="mt-4"
-            onClick={handleCopyHTML}
-          >
-            <Copy /> Copy Signature HTML
-          </Button>
         </DialogContent>
       </Dialog>
     </>
