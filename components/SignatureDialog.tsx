@@ -37,6 +37,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
           img.src = `${window.location.origin}${img.src}`;
         }
       });
+      console.log(images);
       navigator.clipboard
         .writeText(clonedNode.outerHTML)
         .then(() => console.log("HTML code copied successfully!"))
