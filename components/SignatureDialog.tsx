@@ -25,13 +25,14 @@ interface SignatureDialogProps {
 
 const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
   const [openDialog, setOpenDialog] = useState(false);
+  const [showHTML, setShowHTML] = useState(false); // State to toggle HTML display
   const signatureRef = useRef<HTMLDivElement | null>(null);
 
-  const handleCopy = () => {
+  const handleCopyHTML = () => {
     if (signatureRef.current) {
       navigator.clipboard
-        .writeText(signatureRef.current.outerHTML)
-        .then(() => console.log("Copied successfully"))
+        .writeText(signatureRef.current.outerHTML) // Copy the HTML code of the signature
+        .then(() => console.log("HTML code copied successfully!"))
         .catch((error) => console.error(error));
     } else {
       console.error("Signature element not found.");
@@ -56,7 +57,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
           }}
         >
           <DialogHeader>
-            <DialogTitle>Copy your signature base on usage.</DialogTitle>
+            <DialogTitle>Copy your signature based on usage.</DialogTitle>
             <DialogDescription>Signature details</DialogDescription>
           </DialogHeader>
           <div
@@ -66,6 +67,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
               borderRadius: "12px",
             }}
             ref={signatureRef}
+            id="signature"
           >
             <div
               style={{
@@ -202,24 +204,31 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="mt-4">
             <Button
               variant={"default"}
               size={"sm"}
-              className="mt-4"
-              onClick={handleCopy} // Use the ref-based handler
+              onClick={() => setShowHTML(!showHTML)} // Toggle HTML visibility
             >
-              <Copy /> Copy signature
-            </Button>
-            <Button
-              variant={"outline"}
-              size={"sm"}
-              className="mt-4"
-              onClick={handleCopy} // Use the ref-based handler
-            >
-              <Copy /> Copy signature for Monday
+              {showHTML ? "Hide HTML Code" : "Show HTML Code"}
             </Button>
           </div>
+          {showHTML && signatureRef.current && (
+            <pre
+              className="mt-4 p-2 bg-gray-800 text-white rounded-md overflow-auto"
+              style={{ maxHeight: "300px", whiteSpace: "pre-wrap" }}
+            >
+              {signatureRef.current.outerHTML}
+            </pre>
+          )}
+          <Button
+            variant={"default"}
+            size={"sm"}
+            className="mt-4"
+            onClick={handleCopyHTML}
+          >
+            <Copy /> Copy Signature HTML
+          </Button>
         </DialogContent>
       </Dialog>
     </>
