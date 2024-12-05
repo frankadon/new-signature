@@ -38,6 +38,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
         }
       });
       console.log(clonedNode.outerHTML);
+      console.log(window.location.origin);
       navigator.clipboard
         .writeText(clonedNode.outerHTML)
         .then(() => console.log("HTML code copied successfully!"))
