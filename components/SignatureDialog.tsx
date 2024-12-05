@@ -35,6 +35,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
       images.forEach((img) => {
         if (img.src.startsWith("/")) {
           img.src = `${window.location.origin}${img.src}`;
+          console.log(img.src);
         }
       });
       console.log(clonedNode.outerHTML);
