@@ -1,10 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import Globe from "@/public/globe.svg";
 import Phone from "@/public/phone-call.svg";
 import Image from "next/image";
-import { Button } from "./ui/button";
-import { Copy } from "lucide-react";
 
 interface SignaturePreviewProps {
   name: string;
