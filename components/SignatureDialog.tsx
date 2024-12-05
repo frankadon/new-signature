@@ -25,6 +25,7 @@ interface SignatureDialogProps {
 
 const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
   const [openDialog, setOpenDialog] = useState(false);
+  const signatureRef = useRef<HTMLDivElement | null>(null);
 
   const handleCopy = () => {
     if (signatureRef.current) {
@@ -36,8 +37,6 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
       console.error("Signature element not found.");
     }
   };
-
-  const signatureRef = useRef<HTMLDivElement | null>(null);
 
   return (
     <>

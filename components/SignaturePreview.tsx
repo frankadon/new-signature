@@ -17,21 +17,6 @@ const SignaturePreview = ({
   position,
   contact,
 }: SignaturePreviewProps) => {
-  // Create a ref to the signature container
-  const signatureRef = useRef<HTMLDivElement | null>(null);
-
-  // Handler to copy the signature's HTML content
-  const handleCopy = () => {
-    if (signatureRef.current) {
-      navigator.clipboard
-        .writeText(signatureRef.current.outerHTML)
-        .then(() => console.log("Copied successfully"))
-        .catch((error) => console.error(error));
-    } else {
-      console.error("Signature element not found.");
-    }
-  };
-
   return (
     <Card className="shadow-none border-none">
       <CardHeader>
@@ -41,7 +26,6 @@ const SignaturePreview = ({
         <div
           className="bg-slate-950 w-[700px] h-[200px] rounded-lg"
           id="signature"
-          ref={signatureRef} // Attach the ref here
         >
           <div className="flex flex-col items-start gap-3 py-2">
             <div className="flex gap-3 items-center">
@@ -124,24 +108,6 @@ const SignaturePreview = ({
               contact us at Ad on Group immediately to facilitate its return.
             </p>
           </div>
-        </div>
-        <div className="flex items-center gap-3">
-          <Button
-            variant={"default"}
-            size={"sm"}
-            className="mt-4"
-            onClick={handleCopy} // Use the ref-based handler
-          >
-            <Copy /> Copy signature
-          </Button>
-          <Button
-            variant={"outline"}
-            size={"sm"}
-            className="mt-4"
-            onClick={handleCopy} // Use the ref-based handler
-          >
-            <Copy /> Copy signature for Monday
-          </Button>
         </div>
       </CardContent>
     </Card>
