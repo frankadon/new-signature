@@ -77,8 +77,10 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
           }}
         >
           <DialogHeader>
-            <DialogTitle>Copy your signature based on usage.</DialogTitle>
-            <DialogDescription>Signature details</DialogDescription>
+            <DialogTitle>Signature Details</DialogTitle>
+            <DialogDescription>
+              Please copy the signature below for gmail
+            </DialogDescription>
           </DialogHeader>
           <div
             style={{
