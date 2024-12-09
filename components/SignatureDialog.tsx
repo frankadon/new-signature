@@ -236,7 +236,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
               size={"sm"}
               onClick={() => setShowHTML(!showHTML)}
             >
-              {showHTML ? "Hide HTML Code" : "Show HTML Code"}
+              {showHTML ? "Hide HTML Code" : "Show HTML Code for Monday.com"}
             </Button>
             {showHTML ? (
               <Button
@@ -245,7 +245,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
                 onClick={handleCopyHTML}
                 className="ml-auto"
               >
-                <Copy /> Copy Signature HTML
+                <Copy /> Copy Signature HTML for Monday.com
               </Button>
             ) : (
               ""
