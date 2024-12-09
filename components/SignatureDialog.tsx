@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Globe from "@/public/globe.svg";
 import AOG from "@/public/AOG-logo.svg";
@@ -27,19 +27,29 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [showHTML, setShowHTML] = useState(false); // State to toggle HTML display
   const signatureRef = useRef<HTMLDivElement | null>(null);
+  const [origin, setOrigin] = useState("");
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setOrigin(window.location.origin);
+    }
+  }, []);
 
   const handleCopyHTML = () => {
     if (signatureRef.current) {
       const clonedNode = signatureRef.current.cloneNode(true) as HTMLElement;
+
+      // Replace `src` attributes with `data-src`
       const images = clonedNode.querySelectorAll("img");
       images.forEach((img) => {
-        if (img.src.startsWith("/")) {
-          img.src = `${window.location.origin}${img.src}`;
-          console.log(img.src);
+        const originalSrc = img.getAttribute("data-src");
+        if (originalSrc) {
+          img.setAttribute("src", originalSrc);
         }
       });
-      console.log(clonedNode.outerHTML);
-      console.log(window.location.origin);
+
+      // Copy updated HTML to clipboard
+      console.log("Copied to clipboard", clonedNode.outerHTML);
       navigator.clipboard
         .writeText(clonedNode.outerHTML)
         .then(() => console.log("HTML code copied successfully!"))
@@ -98,6 +108,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
                   height={120}
                   priority
                   style={{ height: "auto", marginLeft: "12px" }}
+                  data-src={`${origin}/AOG-logo.svg`}
                 />
                 <div
                   style={{
@@ -134,6 +145,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
                         src={Phone}
                         alt="Phone icon"
                         style={{ color: "white", width: "16px" }}
+                        data-src={`${origin}/phone-call.svg`}
                       />
                       {contact}
                     </a>
@@ -151,6 +163,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
                         src={Globe}
                         alt="Globe icon"
                         style={{ color: "white", width: "16px" }}
+                        data-src={`${origin}/globe.svg`}
                       />
                       www.adongroup.com.au
                     </a>
@@ -168,6 +181,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
                         src={Globe}
                         alt="Globe icon"
                         style={{ color: "white", width: "16px" }}
+                        data-src={`${origin}/globe.svg`}
                       />
                       www.adonworkforce.com.au
                     </a>
@@ -189,6 +203,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
                     height={80}
                     style={{ height: "auto" }}
                     priority
+                    data-src={`${origin}/AOW-logo.svg`}
                   />
                   <Image
                     src={AOH}
@@ -197,6 +212,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
                     height={80}
                     style={{ height: "auto" }}
                     priority
+                    data-src={`${origin}/AOH-logo.svg`}
                   />
                 </div>
               </div>
