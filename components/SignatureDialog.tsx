@@ -15,19 +15,28 @@ import AOG from "@/public/AOG-logo.svg";
 import AOW from "@/public/AOW-logo.svg";
 import AOH from "@/public/AOH-logo.svg";
 import Phone from "@/public/phone-call.svg";
+import Mobile from "@/public/smartphone.svg";
 import { Copy } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 interface SignatureDialogProps {
   name: string;
   position: string;
   contact: string;
+  mobile?: string;
 }
 
-const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
+const SignatureDialog = ({
+  name,
+  position,
+  contact,
+  mobile,
+}: SignatureDialogProps) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [showHTML, setShowHTML] = useState(false); // State to toggle HTML display
   const signatureRef = useRef<HTMLDivElement | null>(null);
   const [origin, setOrigin] = useState("");
+  const { toast } = useToast();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -39,7 +48,6 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
     if (signatureRef.current) {
       const clonedNode = signatureRef.current.cloneNode(true) as HTMLElement;
 
-      // Replace `src` attributes with `data-src`
       const images = clonedNode.querySelectorAll("img");
       images.forEach((img) => {
         const originalSrc = img.getAttribute("data-src");
@@ -48,11 +56,13 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
         }
       });
 
-      // Copy updated HTML to clipboard
-      console.log("Copied to clipboard", clonedNode.outerHTML);
       navigator.clipboard
         .writeText(clonedNode.outerHTML)
-        .then(() => console.log("HTML code copied successfully!"))
+        .then(() => {
+          toast({
+            title: "Copied sucessfully!",
+          });
+        })
         .catch((error) => console.error(error));
     } else {
       console.error("Signature element not found.");
@@ -120,9 +130,7 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
                   }}
                 >
                   <div>
-                    <b style={{ color: "white", fontSize: "18px" }}>
-                      {name.toUpperCase()}
-                    </b>
+                    <b style={{ color: "white", fontSize: "18px" }}>{name}</b>
                     <p style={{ color: "white" }}>{position}</p>
                   </div>
 
@@ -151,6 +159,28 @@ const SignatureDialog = ({ name, position, contact }: SignatureDialogProps) => {
                       />
                       {contact}
                     </a>
+                    {mobile ? (
+                      <a
+                        href={`tel:` + `${mobile}`}
+                        style={{
+                          color: "white",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "8px",
+                          fontSize: "12px",
+                        }}
+                      >
+                        <Image
+                          src={Mobile}
+                          alt="Phone icon"
+                          style={{ color: "white", width: "16px" }}
+                          data-src={`${origin}/smartphone.svg`}
+                        />
+                        {mobile}
+                      </a>
+                    ) : (
+                      ""
+                    )}
                     <a
                       href="https://www.adongroup.com.au"
                       style={{

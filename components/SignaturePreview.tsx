@@ -1,28 +1,38 @@
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import Globe from "@/public/globe.svg";
 import Phone from "@/public/phone-call.svg";
+import Mobile from "@/public/smartphone.svg";
 import Image from "next/image";
 
 interface SignaturePreviewProps {
   name: string;
   position: string;
   contact: string;
+  mobile?: string;
 }
 
 const SignaturePreview = ({
   name,
   position,
   contact,
+  mobile,
 }: SignaturePreviewProps) => {
   return (
     <Card className="shadow-none border-none">
       <CardHeader>
         <CardTitle>Signature preview</CardTitle>
+        <CardDescription>Please do not copy this signature.</CardDescription>
       </CardHeader>
       <CardContent>
         <div
-          className="bg-slate-950 w-[700px] h-[200px] rounded-lg"
+          className="bg-slate-950 w-[700px] h-auto rounded-lg"
           id="signature"
         >
           <div className="flex flex-col items-start gap-3 py-2">
@@ -37,7 +47,7 @@ const SignaturePreview = ({
               />
               <div className="flex flex-col gap-5">
                 <div>
-                  <b className="text-white text-lg">{name.toUpperCase()}</b>
+                  <b className="text-white text-lg">{name}</b>
                   <p className="text-white">{position}</p>
                 </div>
 
@@ -53,6 +63,21 @@ const SignaturePreview = ({
                     />
                     {contact}
                   </a>
+                  {mobile ? (
+                    <a
+                      href={`tel:` + `${mobile}`}
+                      className="text-white flex items-center gap-2 text-xs"
+                    >
+                      <Image
+                        src={Mobile}
+                        alt="Mobile icon"
+                        className="text-white w-4"
+                      />
+                      {mobile}
+                    </a>
+                  ) : (
+                    ""
+                  )}
                   <a
                     href="https://www.adongroup.com.au"
                     className="text-white flex items-center gap-2 text-xs"
