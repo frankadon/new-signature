@@ -9,7 +9,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { Copy } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
