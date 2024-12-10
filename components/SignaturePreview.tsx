@@ -9,6 +9,10 @@ import {
 import Globe from "@/public/globe.svg";
 import Phone from "@/public/phone-call.svg";
 import Mobile from "@/public/smartphone.svg";
+import AOG from "@/public/AOG-logo.svg";
+import AOW from "@/public/AOW-logo.svg";
+import AOH from "@/public/AOH-logo.svg";
+import AOD from "@/public/AOD-logo.svg";
 import Image from "next/image";
 
 interface SignaturePreviewProps {
@@ -42,7 +46,7 @@ const SignaturePreview = ({
               {isWorkforce ? (
                 <div className="flex flex-col items-center gap-2">
                   <Image
-                    src="https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png"
+                    src={AOW}
                     alt="AOW logo"
                     width={220}
                     height={100}
@@ -123,7 +127,7 @@ const SignaturePreview = ({
               <div className="flex flex-col items-center gap-4 ml-8">
                 {isWorkforce ? (
                   <Image
-                    src="https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png"
+                    src={AOG}
                     alt="Logo"
                     width={190}
                     height={120}
@@ -131,26 +135,32 @@ const SignaturePreview = ({
                     className="h-auto ml-3"
                   />
                 ) : (
-                  <Image
-                    src="https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png"
-                    alt="AOW logo"
-                    width={200}
-                    height={80}
-                    className="h-auto"
-                    priority
-                  />
-                )}
-                {isWorkforce ? (
-                  false
-                ) : (
-                  <Image
-                    src="https://adongroup.com.au/wp-content/uploads/2024/12/AOH-logo.png"
-                    alt="AOH logo"
-                    width={120}
-                    height={80}
-                    className="h-auto"
-                    priority
-                  />
+                  <div className="flex flex-col items-center">
+                    <Image
+                      src={AOD}
+                      alt="AOD logo"
+                      width={140}
+                      height={80}
+                      className="h-auto"
+                      priority
+                    />
+                    <Image
+                      src={AOW}
+                      alt="AOW logo"
+                      width={200}
+                      height={80}
+                      className="h-auto"
+                      priority
+                    />
+                    <Image
+                      src={AOH}
+                      alt="AOH logo"
+                      width={120}
+                      height={80}
+                      className="h-auto mt-1"
+                      priority
+                    />
+                  </div>
                 )}
               </div>
             </div>

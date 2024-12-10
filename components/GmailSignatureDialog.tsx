@@ -1,10 +1,4 @@
-import Image from "next/image";
-import Globe from "@/public/globe.svg";
-import AOG from "@/public/AOG-logo.svg";
-import AOW from "@/public/AOW-logo.svg";
-import AOH from "@/public/AOH-logo.svg";
-import Phone from "@/public/phone-call.svg";
-import Mobile from "@/public/smartphone.svg";
+/* eslint-disable @next/next/no-img-element */
 import {
   Dialog,
   DialogContent,
@@ -12,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "./ui/button";
 
 interface GmailSignatureViewProps {
@@ -31,14 +25,7 @@ const GmailSignatureDialog = ({
   isWorkforce,
 }: GmailSignatureViewProps) => {
   const [openDialog, setOpenDialog] = useState(false);
-  const [origin, setOrigin] = useState("");
   const nbsp = "\u00A0";
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setOrigin(window.location.origin);
-    }
-  }, []);
 
   return (
     <>
@@ -86,12 +73,11 @@ const GmailSignatureDialog = ({
                     padding: "12px",
                   }}
                 >
-                  <Image
-                    src={isWorkforce ? AOW : AOG}
-                    data-src={
+                  <img
+                    src={
                       isWorkforce
-                        ? `${origin}/AOW-logo.svg`
-                        : `${origin}/AOG-logo.svg`
+                        ? `https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png`
+                        : `https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png`
                     }
                     alt="Logo"
                     width={isWorkforce ? 220 : 190}
@@ -133,12 +119,11 @@ const GmailSignatureDialog = ({
                           textDecoration: "none",
                         }}
                       >
-                        <Image
-                          src={Phone}
+                        <img
+                          src="https://adongroup.com.au/wp-content/uploads/2024/12/phone-call.png"
                           alt="Phone icon"
                           width={16}
                           height={16}
-                          data-src={`${origin}/phone-call.svg`}
                         />
                         {nbsp}
                         {contact}
@@ -155,12 +140,11 @@ const GmailSignatureDialog = ({
                             textDecoration: "none",
                           }}
                         >
-                          <Image
-                            src={Mobile}
+                          <img
+                            src="https://adongroup.com.au/wp-content/uploads/2024/12/smartphone.png"
                             alt="Mobile icon"
                             width={16}
                             height={16}
-                            data-src={`${origin}/smartphone.svg`}
                           />
                           {nbsp}
                           {mobile}
@@ -177,12 +161,11 @@ const GmailSignatureDialog = ({
                           textDecoration: "none",
                         }}
                       >
-                        <Image
-                          src={Globe}
+                        <img
+                          src="https://adongroup.com.au/wp-content/uploads/2024/12/globe.png"
                           alt="Globe icon"
                           width={16}
                           height={16}
-                          data-src={`${origin}/globe.svg`}
                         />
                         {nbsp}
                         www.adongroup.com.au
@@ -198,12 +181,11 @@ const GmailSignatureDialog = ({
                           textDecoration: "none",
                         }}
                       >
-                        <Image
-                          src={Globe}
+                        <img
+                          src="https://adongroup.com.au/wp-content/uploads/2024/12/globe.png"
                           alt="Globe icon"
                           width={16}
                           height={16}
-                          data-src={`${origin}/globe.svg`}
                         />
                         {nbsp}
                         www.adonworkforce.com.au
@@ -220,12 +202,22 @@ const GmailSignatureDialog = ({
                     padding: "12px",
                   }}
                 >
-                  <Image
-                    src={isWorkforce ? AOG : AOW}
-                    data-src={
+                  {!isWorkforce && (
+                    <div style={{ marginTop: "8px", textAlign: "center" }}>
+                      <img
+                        src="https://adongroup.com.au/wp-content/uploads/2024/12/AOD-logo.png"
+                        alt="AOD logo"
+                        width={140}
+                        height={80}
+                        style={{ height: "auto", margin: "auto" }}
+                      />
+                    </div>
+                  )}
+                  <img
+                    src={
                       isWorkforce
-                        ? `${origin}/AOG-logo.svg`
-                        : `${origin}/AOW-logo.svg`
+                        ? `https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png`
+                        : `https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png`
                     }
                     alt="AOW logo"
                     width={200}
@@ -234,13 +226,12 @@ const GmailSignatureDialog = ({
                   />
                   {!isWorkforce && (
                     <div style={{ marginTop: "8px", textAlign: "center" }}>
-                      <Image
-                        src={AOH}
+                      <img
+                        src="https://adongroup.com.au/wp-content/uploads/2024/12/AOH-logo.png"
                         alt="AOH logo"
                         width={120}
                         height={80}
                         style={{ height: "auto", margin: "auto" }}
-                        data-src={`${origin}/AOH-logo.svg`}
                       />
                     </div>
                   )}

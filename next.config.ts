@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
         hostname: "adongroup.com.au",
       },
     ],
+    // domains: ["adonworkforce.com.au", "adongroup.com.au"],
   },
 };
 

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import {
@@ -14,6 +15,7 @@ import Globe from "@/public/globe.svg";
 import AOG from "@/public/AOG-logo.svg";
 import AOW from "@/public/AOW-logo.svg";
 import AOH from "@/public/AOH-logo.svg";
+import AOD from "@/public/AOD-logo.svg";
 import Phone from "@/public/phone-call.svg";
 import Mobile from "@/public/smartphone.svg";
 import { Copy } from "lucide-react";
@@ -50,13 +52,13 @@ const SignatureDialog = ({
     if (signatureRef.current) {
       const clonedNode = signatureRef.current.cloneNode(true) as HTMLElement;
 
-      const images = clonedNode.querySelectorAll("img");
-      images.forEach((img) => {
-        const originalSrc = img.getAttribute("data-src");
-        if (originalSrc) {
-          img.setAttribute("src", originalSrc);
-        }
-      });
+      // const images = clonedNode.querySelectorAll("img");
+      // images.forEach((img) => {
+      //   const originalSrc = img.getAttribute("data-src");
+      //   if (originalSrc) {
+      //     img.setAttribute("src", originalSrc);
+      //   }
+      // });
 
       navigator.clipboard
         .writeText(clonedNode.outerHTML)
@@ -124,18 +126,16 @@ const SignatureDialog = ({
                     alignItems: "center",
                   }}
                 >
-                  <Image
-                    src={isWorkforce ? AOW : AOG}
+                  <img
+                    src={
+                      isWorkforce
+                        ? `https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png`
+                        : `https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png`
+                    }
                     alt="Logo"
                     width={isWorkforce ? 220 : 190}
                     height={isWorkforce ? 130 : 120}
-                    priority
                     style={{ height: "auto", marginLeft: "12px" }}
-                    data-src={
-                      isWorkforce
-                        ? `${origin}/AOW-logo.svg`
-                        : `${origin}/AOG-logo.svg`
-                    }
                   />
                   {isWorkforce ? (
                     <strong style={{ color: "white", marginLeft: "12px" }}>
@@ -176,11 +176,10 @@ const SignatureDialog = ({
                         fontSize: "12px",
                       }}
                     >
-                      <Image
-                        src={Phone}
+                      <img
+                        src="https://adongroup.com.au/wp-content/uploads/2024/12/phone-call.png"
                         alt="Phone icon"
                         style={{ color: "white", width: "16px" }}
-                        data-src={`${origin}/phone-call.svg`}
                       />
                       {contact}
                     </a>
@@ -195,11 +194,10 @@ const SignatureDialog = ({
                           fontSize: "12px",
                         }}
                       >
-                        <Image
-                          src={Mobile}
+                        <img
+                          src="https://adongroup.com.au/wp-content/uploads/2024/12/smartphone.png"
                           alt="Phone icon"
                           style={{ color: "white", width: "16px" }}
-                          data-src={`${origin}/smartphone.svg`}
                         />
                         {mobile}
                       </a>
@@ -216,11 +214,10 @@ const SignatureDialog = ({
                         fontSize: "12px",
                       }}
                     >
-                      <Image
-                        src={Globe}
+                      <img
+                        src="https://adongroup.com.au/wp-content/uploads/2024/12/globe.png"
                         alt="Globe icon"
                         style={{ color: "white", width: "16px" }}
-                        data-src={`${origin}/globe.svg`}
                       />
                       www.adongroup.com.au
                     </a>
@@ -234,11 +231,10 @@ const SignatureDialog = ({
                         fontSize: "12px",
                       }}
                     >
-                      <Image
-                        src={Globe}
+                      <img
+                        src="https://adongroup.com.au/wp-content/uploads/2024/12/globe.png"
                         alt="Globe icon"
                         style={{ color: "white", width: "16px" }}
-                        data-src={`${origin}/globe.svg`}
                       />
                       www.adonworkforce.com.au
                     </a>
@@ -249,34 +245,38 @@ const SignatureDialog = ({
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    gap: "16px",
                     marginLeft: "32px",
                   }}
                 >
-                  <Image
-                    src={isWorkforce ? AOG : AOW}
+                  {!isWorkforce && (
+                    <img
+                      src="https://adongroup.com.au/wp-content/uploads/2024/12/AOD-logo.png"
+                      alt="AOD logo"
+                      width={130}
+                      height={80}
+                      style={{ height: "auto" }}
+                    />
+                  )}
+
+                  <img
+                    src={
+                      isWorkforce
+                        ? `https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png`
+                        : `https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png`
+                    }
                     alt="AOW logo"
                     width={200}
                     height={80}
                     style={{ height: "auto" }}
-                    priority
-                    data-src={
-                      isWorkforce
-                        ? `${origin}/AOG-logo.svg`
-                        : `${origin}/AOW-logo.svg`
-                    }
                   />
-                  {isWorkforce ? (
-                    false
-                  ) : (
-                    <Image
-                      src={AOH}
+                  {!isWorkforce && (
+                    <img
+                      src="https://adongroup.com.au/wp-content/uploads/2024/12/AOH-logo.png"
                       alt="AOH logo"
                       width={120}
                       height={80}
                       style={{ height: "auto" }}
-                      priority
-                      data-src={`${origin}/AOH-logo.svg`}
+                      className="mt-1"
                     />
                   )}
                 </div>
