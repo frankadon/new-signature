@@ -16,6 +16,7 @@ interface SignaturePreviewProps {
   position: string;
   contact: string;
   mobile?: string;
+  isWorkforce?: boolean;
 }
 
 const SignaturePreview = ({
@@ -23,6 +24,7 @@ const SignaturePreview = ({
   position,
   contact,
   mobile,
+  isWorkforce,
 }: SignaturePreviewProps) => {
   return (
     <Card className="shadow-none border-none">
@@ -37,14 +39,30 @@ const SignaturePreview = ({
         >
           <div className="flex flex-col items-start gap-3 py-2">
             <div className="flex gap-3 items-center">
-              <Image
-                src="https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png"
-                alt="Logo"
-                width={190}
-                height={120}
-                priority
-                className="h-auto ml-3"
-              />
+              {isWorkforce ? (
+                <div className="flex flex-col items-center gap-2">
+                  <Image
+                    src="https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png"
+                    alt="AOW logo"
+                    width={220}
+                    height={100}
+                    className="h-auto ml-3"
+                    priority
+                  />
+                  <strong className="text-white">
+                    A division of AdOn Group
+                  </strong>
+                </div>
+              ) : (
+                <Image
+                  src="https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png"
+                  alt="Logo"
+                  width={190}
+                  height={120}
+                  priority
+                  className="h-auto ml-3"
+                />
+              )}
               <div className="flex flex-col gap-5">
                 <div>
                   <b className="text-white text-lg">{name}</b>
@@ -103,22 +121,37 @@ const SignaturePreview = ({
                 </div>
               </div>
               <div className="flex flex-col items-center gap-4 ml-8">
-                <Image
-                  src="https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png"
-                  alt="AOW logo"
-                  width={200}
-                  height={80}
-                  className="h-auto"
-                  priority
-                />
-                <Image
-                  src="https://adongroup.com.au/wp-content/uploads/2024/12/AOH-logo.png"
-                  alt="AOH logo"
-                  width={120}
-                  height={80}
-                  className="h-auto"
-                  priority
-                />
+                {isWorkforce ? (
+                  <Image
+                    src="https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png"
+                    alt="Logo"
+                    width={190}
+                    height={120}
+                    priority
+                    className="h-auto ml-3"
+                  />
+                ) : (
+                  <Image
+                    src="https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png"
+                    alt="AOW logo"
+                    width={200}
+                    height={80}
+                    className="h-auto"
+                    priority
+                  />
+                )}
+                {isWorkforce ? (
+                  false
+                ) : (
+                  <Image
+                    src="https://adongroup.com.au/wp-content/uploads/2024/12/AOH-logo.png"
+                    alt="AOH logo"
+                    width={120}
+                    height={80}
+                    className="h-auto"
+                    priority
+                  />
+                )}
               </div>
             </div>
             <p className="text-white text-[9px] px-4">

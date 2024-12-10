@@ -24,6 +24,7 @@ interface SignatureDialogProps {
   position: string;
   contact: string;
   mobile?: string;
+  isWorkforce?: boolean;
 }
 
 const SignatureDialog = ({
@@ -31,6 +32,7 @@ const SignatureDialog = ({
   position,
   contact,
   mobile,
+  isWorkforce,
 }: SignatureDialogProps) => {
   const [openDialog, setOpenDialog] = useState(false);
   const [showHTML, setShowHTML] = useState(false); // State to toggle HTML display
@@ -76,7 +78,7 @@ const SignatureDialog = ({
         className="mt-4"
         onClick={() => setOpenDialog(true)}
       >
-        Show signature
+        For Monday.com
       </Button>
       <Dialog open={openDialog} onOpenChange={setOpenDialog}>
         <DialogContent
@@ -95,11 +97,13 @@ const SignatureDialog = ({
           <div
             style={{
               backgroundColor: "#000",
-              width: "700px",
+              maxWidth: "700px",
+              maxHeight: "280px",
               borderRadius: "12px",
             }}
             ref={signatureRef}
             id="signature"
+            // hidden={isHidden}
           >
             <div
               style={{
@@ -113,15 +117,36 @@ const SignatureDialog = ({
               <div
                 style={{ display: "flex", gap: "12px", alignItems: "center" }}
               >
-                <Image
-                  src={AOG}
-                  alt="Logo"
-                  width={190}
-                  height={120}
-                  priority
-                  style={{ height: "auto", marginLeft: "12px" }}
-                  data-src={`${origin}/AOG-logo.svg`}
-                />
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <Image
+                    src={isWorkforce ? AOW : AOG}
+                    alt="Logo"
+                    width={isWorkforce ? 220 : 190}
+                    height={isWorkforce ? 130 : 120}
+                    priority
+                    style={{ height: "auto", marginLeft: "12px" }}
+                    data-src={
+                      isWorkforce
+                        ? `${origin}/AOW-logo.svg`
+                        : `${origin}/AOG-logo.svg`
+                    }
+                  />
+                  {isWorkforce ? (
+                    <strong style={{ color: "white", marginLeft: "12px" }}>
+                      A division of{" "}
+                      <b style={{ color: "#2BA8E0" }}>AdOn Group</b>
+                    </strong>
+                  ) : (
+                    false
+                  )}
+                </div>
+
                 <div
                   style={{
                     display: "flex",
@@ -229,23 +254,31 @@ const SignatureDialog = ({
                   }}
                 >
                   <Image
-                    src={AOW}
+                    src={isWorkforce ? AOG : AOW}
                     alt="AOW logo"
                     width={200}
                     height={80}
                     style={{ height: "auto" }}
                     priority
-                    data-src={`${origin}/AOW-logo.svg`}
+                    data-src={
+                      isWorkforce
+                        ? `${origin}/AOG-logo.svg`
+                        : `${origin}/AOW-logo.svg`
+                    }
                   />
-                  <Image
-                    src={AOH}
-                    alt="AOH logo"
-                    width={120}
-                    height={80}
-                    style={{ height: "auto" }}
-                    priority
-                    data-src={`${origin}/AOH-logo.svg`}
-                  />
+                  {isWorkforce ? (
+                    false
+                  ) : (
+                    <Image
+                      src={AOH}
+                      alt="AOH logo"
+                      width={120}
+                      height={80}
+                      style={{ height: "auto" }}
+                      priority
+                      data-src={`${origin}/AOH-logo.svg`}
+                    />
+                  )}
                 </div>
               </div>
               <span
