@@ -10,14 +10,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "./ui/button";
 import { useRef, useState, useEffect } from "react";
-import Image from "next/image";
-import Globe from "@/public/globe.svg";
-import AOG from "@/public/AOG-logo.svg";
-import AOW from "@/public/AOW-logo.svg";
-import AOH from "@/public/AOH-logo.svg";
-import AOD from "@/public/AOD-logo.svg";
-import Phone from "@/public/phone-call.svg";
-import Mobile from "@/public/smartphone.svg";
 import { Copy } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -39,14 +31,7 @@ const SignatureDialog = ({
   const [openDialog, setOpenDialog] = useState(false);
   const [showHTML, setShowHTML] = useState(false); // State to toggle HTML display
   const signatureRef = useRef<HTMLDivElement | null>(null);
-  const [origin, setOrigin] = useState("");
   const { toast } = useToast();
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setOrigin(window.location.origin);
-    }
-  }, []);
 
   const handleCopyHTML = () => {
     if (signatureRef.current) {
