@@ -9,9 +9,7 @@ import {
 import Globe from "@/public/globe.svg";
 import Phone from "@/public/phone-call.svg";
 import Mobile from "@/public/smartphone.svg";
-import AOG from "@/public/AOG-logo.svg";
 import AOW from "@/public/AOW-logo.svg";
-import AOH from "@/public/AOH-logo.svg";
 import AOD from "@/public/AOD-logo.svg";
 import Image from "next/image";
 
