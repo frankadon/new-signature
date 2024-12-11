@@ -87,7 +87,7 @@ const GmailSignatureDialog = ({
                   {isWorkforce && (
                     <div style={{ marginTop: "8px" }}>
                       <strong>
-                        A division of <b>AdOn Group</b>
+                        A division of <b>Ad On Group</b>
                       </strong>
                     </div>
                   )}

@@ -127,7 +127,7 @@ const SignatureDialog = ({
                   />
                   {isWorkforce ? (
                     <strong style={{ color: "white", marginLeft: "12px" }}>
-                      A division of <b>AdOn Group</b>
+                      A division of <b>Ad On Group</b>
                     </strong>
                   ) : (
                     false

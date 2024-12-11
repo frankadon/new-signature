@@ -52,7 +52,7 @@ const SignaturePreview = ({
                     priority
                   />
                   <strong className="text-white">
-                    A division of AdOn Group
+                    A division of Ad On Group
                   </strong>
                 </div>
               ) : (
