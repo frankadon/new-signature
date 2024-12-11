@@ -68,7 +68,7 @@ const GmailSignatureDialog = ({
                 {/* Logo and Division Information */}
                 <td
                   style={{
-                    width: "200px",
+                    width: isWorkforce ? "600px" : "180px",
                     textAlign: "center",
                     padding: "12px",
                   }}
@@ -80,15 +80,14 @@ const GmailSignatureDialog = ({
                         : `https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png`
                     }
                     alt="Logo"
-                    width={isWorkforce ? 220 : 190}
+                    width={isWorkforce ? 380 : 190}
                     height={isWorkforce ? 130 : 120}
-                    style={{ height: "auto", marginLeft: "12px" }}
+                    style={{ height: "auto" }}
                   />
                   {isWorkforce && (
                     <div style={{ marginTop: "8px" }}>
                       <strong>
-                        A division of{" "}
-                        <b style={{ color: "#2BA8E0" }}>AdOn Group</b>
+                        A division of <b>AdOn Group</b>
                       </strong>
                     </div>
                   )}
@@ -197,7 +196,7 @@ const GmailSignatureDialog = ({
                 {/* Additional Logos */}
                 <td
                   style={{
-                    width: "200px",
+                    width: "210px",
                     textAlign: "center",
                     padding: "12px",
                   }}
@@ -205,29 +204,35 @@ const GmailSignatureDialog = ({
                   {!isWorkforce && (
                     <div style={{ marginTop: "8px", textAlign: "center" }}>
                       <img
-                        src="https://adongroup.com.au/wp-content/uploads/2024/12/AOD-logo.png"
-                        alt="AOD logo"
-                        width={140}
-                        height={80}
-                        style={{ height: "auto", margin: "auto" }}
+                        src="https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png"
+                        alt="AOW logo"
+                        style={{
+                          width: "210px",
+                          height: "auto",
+                          margin: "auto",
+                        }}
                       />
                     </div>
                   )}
-                  <img
-                    src={
-                      isWorkforce
-                        ? `https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png`
-                        : `https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png`
-                    }
-                    alt="AOW logo"
-                    width={200}
-                    height={80}
-                    style={{ height: "auto" }}
-                  />
                   {!isWorkforce && (
                     <div style={{ marginTop: "8px", textAlign: "center" }}>
                       <img
-                        src="https://adongroup.com.au/wp-content/uploads/2024/12/AOH-logo.png"
+                        src="https://adongroup.com.au/wp-content/uploads/2024/12/AOD-logo.png"
+                        alt="AOD logo"
+                        style={{
+                          width: "150px",
+                          height: "auto",
+                          margin: "auto",
+                          marginTop: "20px",
+                        }}
+                      />
+                    </div>
+                  )}
+
+                  {!isWorkforce && (
+                    <div style={{ textAlign: "center" }}>
+                      <img
+                        src="https://adongroup.com.au/wp-content/uploads/2024/12/AOH-logo-1.png"
                         alt="AOH logo"
                         width={120}
                         height={80}

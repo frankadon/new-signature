@@ -48,7 +48,7 @@ const SignaturePreview = ({
                   <Image
                     src={AOW}
                     alt="AOW logo"
-                    width={220}
+                    width={380}
                     height={100}
                     className="h-auto ml-3"
                     priority
@@ -125,35 +125,26 @@ const SignaturePreview = ({
                 </div>
               </div>
               <div className="flex flex-col items-center gap-4 ml-8">
-                {isWorkforce ? (
-                  <Image
-                    src={AOG}
-                    alt="Logo"
-                    width={190}
-                    height={120}
-                    priority
-                    className="h-auto ml-3"
-                  />
-                ) : (
+                {!isWorkforce && (
                   <div className="flex flex-col items-center">
+                    <Image
+                      src={AOW}
+                      alt="AOW logo"
+                      width={210}
+                      height={80}
+                      className="h-auto"
+                      priority
+                    />
                     <Image
                       src={AOD}
                       alt="AOD logo"
                       width={140}
                       height={80}
-                      className="h-auto"
+                      className="mt-4 h-auto"
                       priority
                     />
                     <Image
-                      src={AOW}
-                      alt="AOW logo"
-                      width={200}
-                      height={80}
-                      className="h-auto"
-                      priority
-                    />
-                    <Image
-                      src={AOH}
+                      src="https://adongroup.com.au/wp-content/uploads/2024/12/AOH-logo-1.png"
                       alt="AOH logo"
                       width={120}
                       height={80}

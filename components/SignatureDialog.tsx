@@ -78,7 +78,10 @@ const SignatureDialog = ({
           <DialogHeader>
             <DialogTitle>Signature Details</DialogTitle>
             <DialogDescription>
-              Please copy the signature below for gmail
+              Please copy the signature below for{" "}
+              <a href="https://www.monday.com" className="text-blue-500">
+                Monday.com
+              </a>
             </DialogDescription>
           </DialogHeader>
           <div
@@ -118,14 +121,13 @@ const SignatureDialog = ({
                         : `https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png`
                     }
                     alt="Logo"
-                    width={isWorkforce ? 220 : 190}
+                    width={isWorkforce ? 380 : 190}
                     height={isWorkforce ? 130 : 120}
                     style={{ height: "auto", marginLeft: "12px" }}
                   />
                   {isWorkforce ? (
                     <strong style={{ color: "white", marginLeft: "12px" }}>
-                      A division of{" "}
-                      <b style={{ color: "#2BA8E0" }}>AdOn Group</b>
+                      A division of <b>AdOn Group</b>
                     </strong>
                   ) : (
                     false
@@ -235,28 +237,29 @@ const SignatureDialog = ({
                 >
                   {!isWorkforce && (
                     <img
+                      src="https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png"
+                      alt="AOD logo"
+                      style={{
+                        width: "210px",
+                        height: "auto",
+                      }}
+                    />
+                  )}
+                  {!isWorkforce && (
+                    <img
                       src="https://adongroup.com.au/wp-content/uploads/2024/12/AOD-logo.png"
                       alt="AOD logo"
-                      width={130}
-                      height={80}
-                      style={{ height: "auto" }}
+                      style={{
+                        marginTop: "20px",
+                        width: "155px",
+                        height: "auto",
+                      }}
                     />
                   )}
 
-                  <img
-                    src={
-                      isWorkforce
-                        ? `https://adongroup.com.au/wp-content/uploads/2024/12/AdonGroup.png`
-                        : `https://adonworkforce.com.au/wp-content/uploads/2023/03/Ad-on-Workforce-logo.png`
-                    }
-                    alt="AOW logo"
-                    width={200}
-                    height={80}
-                    style={{ height: "auto" }}
-                  />
                   {!isWorkforce && (
                     <img
-                      src="https://adongroup.com.au/wp-content/uploads/2024/12/AOH-logo.png"
+                      src="https://adongroup.com.au/wp-content/uploads/2024/12/AOH-logo-1.png"
                       alt="AOH logo"
                       width={120}
                       height={80}
